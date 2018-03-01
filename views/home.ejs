@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/main.css">
+</head>
+  <body>
+    <h1>Recipes</h1>
+    <form action="/add/" method="post">
+      <p>
+        <label for="newrecipe">Comments?</label>
+        <input type="text" name="newrecipe" id="newrecipe" autofocus />
+        <input type="submit" />
+      </p>
+    </form>
+
+    <div class="recipe-box">
+      <h1>Recipes</h1>
+      <ul>
+      <% recipes.forEach(function(recipe, index) { %>
+        <li><a href="/delete/<%= index %>">O</a> <%= recipe.recipe %></li>
+      <% }) %>
+    </ul>
+    </div>
+  </body>
+</html>
