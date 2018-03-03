@@ -1,4 +1,22 @@
+a{
+  color: blue;
+  text-decoration: none;
+}
+
 body{
-  background-color: black;
-  color: white;
+  /* background-color: black;
+  color: white; */
+  text-align: center;
+}
+
+#create-form{
+  border: 1px dotted red;
+}
+#recipe-box{
+  border: 1px dotted blue;
+}
+.recipe{
+  border: 1px dotted green;
+  display: inline-block;
+  width: 24%;
 }

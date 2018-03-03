@@ -4,23 +4,33 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const router = express.Router();
 
-// VIEW HOME
-router.get('/', (req, res) => {
-  console.log(req.session.recipes);
-  res.render('home.ejs', {recipes: req.session.recipes});
+// COOKIES
+router.use(session({secret: 'onlymyrecipes'}))
+
+// CREATE EMPTY ARRAY
+.use((req, res, next) => {
+  if (typeof(req.session.recipes) == 'undefined') {
+    req.session.recipes = [];
+  }
+  next();
 })
 
-// ADD TICKET
+// VIEW HOME
+.get('/', (req, res) => {
+  res.render('home.ejs', {recipes: req.session.recipes, ingredients: req.session.ingredients});
+})
+
+// ADD ITEM
 .post('/add/', urlencodedParser, (req, res) => {
   if (req.body.newrecipe == '') {
-    req.session.recipes.push({recipe: 'No description.'});
+    req.session.recipes.push({recipe: 'No description.', ingredients: req.body.newingredients});
   }else{
-    req.session.recipes.push({recipe: req.body.newrecipe});
+    req.session.recipes.push({recipe: req.body.newrecipe, ingredients: req.body.newingredients});
   }
   res.redirect('/');
 })
 
-// DELETE TICKET
+// DELETE ITEM
 .get('/delete/:id', (req, res) => {
   if (req.params.id != '') {
     req.session.recipes.splice(req.params.id, 1);
@@ -28,9 +38,9 @@ router.get('/', (req, res) => {
   res.redirect('/');
 })
 
-// MODIFY TICKET DETAILS
+// MODIFY ITEM DETAILS
 .get('/update/:id', (req, res) => {
-  req.session.recipes[req.params.id].update ? req.session.recipes[req.params.id].update = false : req.session.recipes[req.params.id].update = true;
+  // req.session.recipes[req.params.id].update ? req.session.recipes[req.params.id].update = false : req.session.recipes[req.params.id].update = true;
   res.redirect('/');
 })
 
