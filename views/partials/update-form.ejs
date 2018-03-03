@@ -1,0 +1,9 @@
+<form action="/update/<%= id %>" method="post" class="forms">
+  <label for="newername">Recipe Name:</label>
+  <input type="text" name="newername" id="newername" value="<%= recipe %>" autofocus /> </br>
+  <label for="neweringredients">Ingredients:</label>
+  <input type="text" name="neweringredients" id="neweringredients" value="<%= ingredients %>" autofocus /> </br>
+  <label for="newerdirections">Directions:</label>
+  <input type="text" name="newerdirections" id="newerdirections" value="<%= directions %>" autofocus /> </br>
+  <input type="submit" />
+</form>

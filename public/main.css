@@ -9,7 +9,7 @@ body{
   text-align: center;
 }
 
-#create-form{
+.forms{
   border: 1px dotted red;
 }
 #recipe-box{

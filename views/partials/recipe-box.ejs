@@ -1,0 +1,12 @@
+<div id="recipe-box">
+  <h1>Recipes</h1>
+  <% recipes.forEach(function(recipe, index) { %>
+    <div class="recipe">
+      <h2><%= recipe.recipe %></h2>
+      <%= recipe.ingredients %> </br>
+      <%= recipe.directions %> </br>
+      <a href="/recipe/<%= index %>"><button>Update</button></a> /
+      <a href="/delete/<%= index %>"><button>Delete</button></a>
+    </div>
+  <% }) %>
+</div>

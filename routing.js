@@ -4,10 +4,8 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const router = express.Router();
 
-// COOKIES
 router.use(session({secret: 'onlymyrecipes'}))
 
-// CREATE EMPTY ARRAY
 .use((req, res, next) => {
   if (typeof(req.session.recipes) == 'undefined') {
     req.session.recipes = [];
@@ -15,32 +13,49 @@ router.use(session({secret: 'onlymyrecipes'}))
   next();
 })
 
-// VIEW HOME
 .get('/', (req, res) => {
-  res.render('home.ejs', {recipes: req.session.recipes, ingredients: req.session.ingredients});
+  res.render('home.ejs', {
+    recipes: req.session.recipes
+  });
 })
 
-// ADD ITEM
+.get('/recipe/:id', (req, res) => {
+  res.render('update.ejs', {
+    id: req.params.id,
+    recipe: req.session.recipes[req.params.id].recipe,
+    ingredients: req.session.recipes[req.params.id].ingredients,
+    directions: req.session.recipes[req.params.id].directions
+  });
+})
+
 .post('/add/', urlencodedParser, (req, res) => {
   if (req.body.newrecipe == '') {
-    req.session.recipes.push({recipe: 'No description.', ingredients: req.body.newingredients});
+    req.session.recipes.push({
+      recipe: 'No description.',
+      ingredients: 'No description.',
+      directions: 'No description.'
+    });
   }else{
-    req.session.recipes.push({recipe: req.body.newrecipe, ingredients: req.body.newingredients});
+    req.session.recipes.push({
+      recipe: req.body.newrecipe,
+      ingredients: req.body.newingredients,
+      directions: req.body.newdirections
+    });
   }
   res.redirect('/');
 })
 
-// DELETE ITEM
+.post('/update/:id', urlencodedParser, (req, res) => {
+  req.session.recipes[req.params.id].recipe = req.body.newername;
+  req.session.recipes[req.params.id].ingredients = req.body.neweringredients;
+  req.session.recipes[req.params.id].directions = req.body.newerdirections;
+  res.redirect('/');
+})
+
 .get('/delete/:id', (req, res) => {
   if (req.params.id != '') {
     req.session.recipes.splice(req.params.id, 1);
   }
-  res.redirect('/');
-})
-
-// MODIFY ITEM DETAILS
-.get('/update/:id', (req, res) => {
-  // req.session.recipes[req.params.id].update ? req.session.recipes[req.params.id].update = false : req.session.recipes[req.params.id].update = true;
   res.redirect('/');
 })
 
