@@ -1,10 +1,10 @@
-# freeCodeCamp React.JS recipe app
+# Express sessions recipe app
 
-This is my recipe app, created using React, CSS & HTML as one of the projects to freeCodeCamp's data visualization program.
+This is my quick and dirty proof of concept recipe app, created using express, CSS & HTML.
 
 ## Getting Started
 
-Host locally after download or check out the one hosted on my site [Recipe](http://www.spazcool.com/recipe/)
+Host locally after download.
 
 ### Prerequisites
 
@@ -16,7 +16,7 @@ No installation required.
 
 ## Built With
 
-* React
+* Express
 * HTML
 * CSS
 
@@ -27,7 +27,3 @@ No installation required.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* [freeCodeCamp's React Leaderboard Project](https://www.freecodecamp.org/challenges/build-a-recipe-box)
