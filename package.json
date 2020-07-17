@@ -1,19 +1,18 @@
 {
   "name": "express-recipe",
+  "author": "Douglas Wright",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "This is a quick & dirty proof of concept recipe app, built more to see if I understood the concepts than to serve a need; offering CRUD operations on simple recipe cards. It was created with Node, Express, utilizing express-sessions as a substitute for a DB & EJS for the frontend templating.",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node server.js"
   },
-  "author": "Douglas Wright",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-session": "^2.0.0-beta.3",
     "ejs": "^2.5.7",
-    "express": "^4.16.2",
-    "react": "^16.2.0"
+    "express": "^4.16.2"
   }
 }
